@@ -1,0 +1,1 @@
+# cf7_api_myfabric.ru_crm
