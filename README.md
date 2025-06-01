@@ -1,6 +1,6 @@
 # cf7_api_myfabric.ru_crm
-
-Указать актуальные имена поля формы cf7 
+Код добавить в файл function.php 
+Указать актуальные имена полей формы cf7 и id myfabriccid
 
   const name = 'your-name';
   const email = 'your-email';
