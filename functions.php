@@ -1,4 +1,4 @@
-/// Начало - Отгрузка файла в хранилище с форм cf7 и отправка по api
+
 add_action('wp_footer', function () {
     ?>
 <script> 
@@ -100,12 +100,8 @@ if (stored) {
        
         input.value = '';console.log(allFiles);
     });
-});
-			
-		
+});			
     });
-	
-	
 	
 	
 	// заполнение и отправка draft
@@ -142,7 +138,7 @@ forms.forEach(form => {
 	  draftData.append('session_id', sessionId);
 	  
 	  
-    if (allFilled &&  FormId ==='' ) {
+    if (allFilled &&  (FormId ==='' || FormId === undefined ) ) {
      
      console.log(values+form.querySelector('textarea').value);
       try {
@@ -162,7 +158,7 @@ forms.forEach(form => {
       } catch (error) {
         console.error('Ошибка отправки:', error);
       }
-    } else {
+    } else if  (allFilled && (FormId !=='' || FormId !== undefined ))  {
   
   
      console.log(values);
@@ -200,7 +196,7 @@ const draftData = {
 	
 	// отправка формы
 	form.addEventListener('submit',  function(event) {
-   
+   if (FormId !=='' || FormId !== undefined ) {
    const filesArray = allFiles.map(({ status, uploaded, file_size, ...rest }) => ({
   ...rest,
   size: rest.size ?? file_size
@@ -239,7 +235,7 @@ const draftData = {
 
     if (response.ok) {
       // Всё успешно
-      console.log('Успешно отправлено');
+     // console.log('Успешно отправлено');
       const filesContainer = form.querySelector('.ffiles');
       if (filesContainer) filesContainer.innerHTML = '';
     } else {
@@ -251,7 +247,7 @@ const draftData = {
   }
 }
  
-sendRequest();
+sendRequest(); }
 });
 });
 	
@@ -327,8 +323,7 @@ const uploadInParts = async (file, sessionId) => {
         let uploadResultText = null;
 
 		 uploadResultText = await uploadResponse.text();
-            console.log(`[debug] Ответ от сервера на часть ${partNumber}:`, uploadResultText);
-		
+          //  console.log(`[debug] Ответ от сервера на часть ${partNumber}:`, uploadResultText);	
     }
 
     const response = await fetch(`https://app.myfabric.ru/api/public-upload/multipart/${uploadId}?Key=${key}`);
@@ -353,13 +348,8 @@ const uploadInParts = async (file, sessionId) => {
 
     return fileInfo;
 };
-
      
 });
 </script>
     <?php
 });
-
-
-
-///Конец - Отгрузка файла в хранилище с форм cf7 и отправка по api 
