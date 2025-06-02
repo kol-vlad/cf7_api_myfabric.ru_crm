@@ -133,7 +133,7 @@ forms.forEach(form => {
       draftData.append('phone', values.find(v => v.name === phone)?.value || '');
       draftData.append('surname', values.find(v => v.name === surname)?.value || '');
       draftData.append('father_name', values.find(v => v.name === father_name)?.value || '');
-	  draftData.append('description', form.querySelector('textarea').value || '1');
+	  draftData.append('description', form.querySelector('textarea').value || '');
 	  draftData.append('status', 'draft');
 	  draftData.append('session_id', sessionId);
 	  
