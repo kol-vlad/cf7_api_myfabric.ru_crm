@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	const timestamp = Date.now().toString();
     const randomDigits = Math.random().toString().replace(/\D/g, '').substr(0, 5);
 	const sessionId = timestamp + randomDigits;
-    const expiresAt = Date.now() + 999 * 60 * 60 * 1000; // 3 часа в миллисекундах
+    const expiresAt = Date.now() + 999 * 60 * 60 * 1000; 
   
 localStorage.setItem("session_data", JSON.stringify({
   value: sessionId,
